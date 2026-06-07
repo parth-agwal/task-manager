@@ -11,3 +11,4 @@ frontend/node_modules/
 
 # env files
 .envfrontend/src/temp
+frontend/src/temp
