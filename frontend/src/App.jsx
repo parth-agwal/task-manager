@@ -50,16 +50,20 @@ function App() {
   });
 
   const [editTaskId, setEditTaskId] = useState(null);
-  const editTask = (task) => {
-    setNewTask({
-      Title: task.Title,
-      Description: task.Description,
-      DueDate: task.DueDate,
-    });
+  const [isEditing, setIsEditing] = useState(false);
 
-    setEditTaskId(task.id);
-    setShowModal(true);
-  };
+  const editTask = (task) => {
+  setIsEditing(true); // 👈 Add this line to force Edit mode
+  setNewTask({
+    Title: task.Title,
+    Description: task.Description,
+    DueDate: task.DueDate,
+  });
+
+  setEditTaskId(task.id);
+  setShowModal(true);
+};
+
 
   const resetForm = () => {
     setNewTask({
@@ -224,6 +228,7 @@ function App() {
       cellRenderer: (params) => (
         <div className="d-flex gap-2">
           <button className="edit-btn"
+            
             onClick={() => editTask(params.data)}
           >
             <i className="bi bi-pencil"></i> Edit
@@ -267,6 +272,7 @@ function App() {
           <button
             className="add-task-btn"
             onClick={() => {
+              setIsEditing(false);
               resetForm();
               setShowModal(true);
             }}
@@ -363,6 +369,7 @@ function App() {
         handleInputChange={handleInputChange}
         addTask={addTask}
         resetForm={resetForm}
+        isEditing={isEditing}
       />
       <Confirm
         showConfirm={showConfirm}

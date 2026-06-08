@@ -5,6 +5,7 @@ function Form({
   handleInputChange,
   addTask,
   resetForm,
+  isEditing, // 1. Added the explicit flag here
 }) {
   if (!showModal) return null;
 
@@ -24,7 +25,10 @@ function Form({
 
           {/* HEADER */}
           <div className="modal-header">
-            <h5 className="modal-title">Add / Edit Task</h5>
+            {/* 2. Dynamically toggles based on the explicit prop */}
+            <h5 className="modal-title">
+              {isEditing ? 'Edit Task' : 'Add Task'}
+            </h5>
 
             <button
               type="button"
@@ -35,69 +39,52 @@ function Form({
 
           {/* BODY */}
           <div className="modal-body">
-
             {/* TITLE */}
             <div className="mb-3">
-              <label className="form-label">
+              <label className="form-label fw-bold">
                 Title <span className="required">*</span>
               </label>
-
               <input
                 type="text"
                 className="form-control"
                 name="Title"
-                value={newTask.Title}
+                value={newTask.Title || ''}
                 onChange={handleInputChange}
               />
             </div>
 
             {/* DESCRIPTION */}
             <div className="mb-3">
-              <label className="form-label">
-                Description
-              </label>
-
+              <label className="form-label fw-bold">Description</label>
               <textarea
                 className="form-control"
                 rows="3"
                 name="Description"
-                placeholder="Description (Optional)"
-                value={newTask.Description}
+                value={newTask.Description || ''}
                 onChange={handleInputChange}
               />
             </div>
 
             {/* DUE DATE */}
             <div className="mb-3">
-              <label className="form-label">
-                Due Date 
-              </label>
-
+              <label className="form-label fw-bold">Due Date</label>
               <input
                 type="date"
                 className="form-control"
                 name="DueDate"
-                value={newTask.DueDate}
+                value={newTask.DueDate || ''}
                 onChange={handleInputChange}
               />
             </div>
-
           </div>
 
           {/* FOOTER */}
           <div className="modal-footer">
-            <button
-              className="btn btn-secondary"
-              onClick={handleClose}
-            >
+            <button className="btn btn-secondary" onClick={handleClose}>
               Cancel
             </button>
-
-            <button
-              className="btn btn-primary"
-              onClick={addTask}
-            >
-              Save Task
+            <button className="btn btn-primary" onClick={addTask}>
+              {isEditing ? 'Update Task' : 'Save Task'}
             </button>
           </div>
 
