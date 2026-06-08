@@ -15,6 +15,8 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 import Form from './components/Form';
 import Confirm from './components/Confirm';
 
+import API_URL from './config';
+
 
 function App() {
 
@@ -25,7 +27,7 @@ function App() {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:8000/tasks');
+      const res = await axios.get(`${API_URL}/tasks`);
       const formattedData = res.data.map((task) => ({
         id: task.id,
         Title: task.title,
@@ -81,7 +83,7 @@ function App() {
     if (!taskToDelete) return;
 
     try {
-      await axios.delete(`http://localhost:8000/tasks/${taskToDelete.id}`);
+      await axios.delete(`${API_URL}/tasks/${taskToDelete.id}`);
       fetchTasks();
     } catch (err) {
       console.error("Failed to delete task:", err);
@@ -101,9 +103,7 @@ function App() {
 
   const toggleStatus = async (id) => {
     try {
-      await axios.put(
-        `http://localhost:8000/tasks/status/${id}`
-      );
+      await axios.put(`${API_URL}/tasks/status/${id}`);
       fetchTasks();
     } catch (err) {
       console.error(err);
@@ -119,7 +119,7 @@ function App() {
     if (editTaskId) {
       try {
         await axios.put(
-          `http://localhost:8000/tasks/${editTaskId}`,
+          `${API_URL}/tasks/${editTaskId}`,
           {
             title: newTask.Title,
             description: newTask.Description,
@@ -136,13 +136,13 @@ function App() {
     else {
       try {
         await axios.post(
-          'http://localhost:8000/tasks',
-          {
-            title: newTask.Title,
-            description: newTask.Description,
-            dueDate: newTask.DueDate,
-          }
-        );
+  `${API_URL}/tasks`,
+  {
+    title: newTask.Title,
+    description: newTask.Description,
+    dueDate: newTask.DueDate,
+  }
+);
 
         fetchTasks();
       } catch (err) {
