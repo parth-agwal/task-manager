@@ -10,6 +10,8 @@ const DATA_FILE = path.join(__dirname, 'data.json');
 app.use(cors());
 app.use(express.json());
 
+const port = process.env.PORT || 8000;
+
 /* ---------------- LOAD LAST PROCESSED DATE ---------------- */
 var processedDate = new Date();
 
@@ -35,7 +37,6 @@ try {
 /* ---------------- GET ALL TASKS ---------------- */
 app.get('/tasks', (req, res) => {
   if (processedDate.getDate() != new Date().getDate()) {
-    console.log("abc");
     var overdue = 'Overdue';
     var active = 'Active';
     const task1 = db.prepare('UPDATE tasks SET status = ? WHERE dueDate < DATETIME() and status = ? ').run(overdue, active)
@@ -134,6 +135,10 @@ app.put('/tasks/status/:id', (req, res) => {
 
 
 /* ---------------- START SERVER ---------------- */
-app.listen(8000, () => {
-  console.log('Server running on port 8000');
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
+// app.listen(8000, () => {
+//   console.log('Server running on port 8000');
+// });
