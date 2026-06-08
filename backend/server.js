@@ -9,6 +9,7 @@ const DATA_FILE = path.join(__dirname, 'data.json');
 
 app.use(cors());
 app.use(express.json());
+const port = process.env.PORT || 8000;
 
 /* ---------------- LOAD LAST PROCESSED DATE ---------------- */
 var processedDate = new Date();
@@ -134,6 +135,9 @@ app.put('/tasks/status/:id', (req, res) => {
 
 
 /* ---------------- START SERVER ---------------- */
-app.listen(8000, () => {
-  console.log('Server running on port 8000');
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
+// app.listen(8000, () => {
+//   console.log('Server running on port 8000');
+// });
