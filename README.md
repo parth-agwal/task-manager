@@ -15,6 +15,7 @@ This project is a full-stack Task Manager application built as part of the Studi
 * Automatically detect overdue tasks
 * Filter tasks by status
 * Sort and view tasks using AG Grid
+* Search and filter tasks using AG Grid
 * Persistent storage using SQLite
 * RESTful API architecture
 
@@ -84,7 +85,7 @@ task-manager/
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/parth-agwal/task-manager.git>
 cd task-manager
 ```
 
@@ -241,12 +242,22 @@ Response:
 ## Future Improvements
 
 Given more time, the following enhancements would be implemented:
-
-*
+* Add category column(College, Home, Office).
+* Drag-and-drop task reordering.
+* Task priority levels (Low, Medium, High).
+* Due date reminders and notifications.
+* Server side sorting and pagination.
+* Migration from SQLite to PostgreSQL for improved scalability in production environments.
 
 ---
 
 ## Live Demo
+
+Frontend:
+https://task-manager-frontend-2h66.onrender.com/
+
+Backend API:
+https://task-manager-backend-t57l.onrender.com/tasks
 
 
 ---
