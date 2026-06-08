@@ -136,13 +136,13 @@ function App() {
     else {
       try {
         await axios.post(
-  `${API_URL}/tasks`,
-  {
-    title: newTask.Title,
-    description: newTask.Description,
-    dueDate: newTask.DueDate,
-  }
-);
+          `${API_URL}/tasks`,
+          {
+            title: newTask.Title,
+            description: newTask.Description,
+            dueDate: newTask.DueDate,
+          }
+        );
 
         fetchTasks();
       } catch (err) {
@@ -223,8 +223,8 @@ function App() {
       width: 300,
       cellRenderer: (params) => (
         <div className="d-flex gap-2">
-          <button className="edit-btn" 
-          onClick={() => editTask(params.data)}
+          <button className="edit-btn"
+            onClick={() => editTask(params.data)}
           >
             <i className="bi bi-pencil"></i> Edit
           </button>
@@ -233,10 +233,19 @@ function App() {
           >
             <i className="bi bi-trash"></i> Delete
           </button>
-          <label className="switch">
-            <input type="checkbox"
+          <label
+            className="switch"
+            title={
+              params.data.Status === 'Completed'
+                ? "Mark as Active (will restore Active/Overdue based on due date)"
+                : "Mark as Completed"
+            }
+          >
+            <input
+              type="checkbox"
               checked={params.data.Status === 'Completed'}
-              onChange={() => toggleStatus(params.data.id)} />
+              onChange={() => toggleStatus(params.data.id)}
+            />
             <span className="slider round"></span>
           </label>
         </div>
@@ -338,7 +347,7 @@ function App() {
               columnDefs={colDefs}
               defaultColDef={defaultColDef}
               pagination={true}
-              paginationPageSize={10}
+              paginationPageSize={20}
               domLayout="autoHeight"
               rowHeight={38}
             />
