@@ -11,8 +11,6 @@ app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 8000;
 
-const port = process.env.PORT || 8000;
-
 /* ---------------- LOAD LAST PROCESSED DATE ---------------- */
 var processedDate = new Date();
 
@@ -136,17 +134,6 @@ app.put('/tasks/status/:id', (req, res) => {
 
 
 /* ---------------- START SERVER ---------------- */
-<<<<<<< HEAD
-
-=======
->>>>>>> 219981a6ff64819c9e780cd07246c7e6e90bb3a1
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-// app.listen(8000, () => {
-//   console.log('Server running on port 8000');
-<<<<<<< HEAD
-// });
-=======
-// });
->>>>>>> 219981a6ff64819c9e780cd07246c7e6e90bb3a1
