@@ -2,7 +2,7 @@
 
 ## Brief Description
 
-This project is a full-stack Task Manager application built as part of the Studio Graphene take-home exercise. The application allows users to create, edit, delete, and manage tasks through a responsive React frontend and a Node.js/Express backend. Tasks can be filtered by status (All, Active, Completed, and Overdue), and overdue tasks are automatically identified based on their due dates.
+This project is a full-stack Task Manager application. The application allows users to create, edit, delete, and manage tasks through a responsive React frontend and a Node.js/Express backend. Tasks can be filtered by status (All, Active, Completed, and Overdue), and overdue tasks are automatically identified based on their due dates.
 
 ---
 
